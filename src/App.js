@@ -2,6 +2,16 @@ import React, { useState, useEffect } from 'react'
 import './App.css';
 import axios from 'axios';
 import Character from './components/Character'
+// import Details from './components/Details';
+import styled from "styled-components";
+
+
+const MainStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #658b6c;
+  margin: 0 20%;
+`
 
 
 const App = () => {
@@ -40,14 +50,14 @@ const App = () => {
   return (
     <div className="App">
       <h1 className="Header">Star Wars Characters</h1>
-      {person.map(info => (
-        <Character 
-          info={info} 
-          key={info.id} 
-          openDetails={openDetails} 
-        />)
+      <MainStyle>
+      {person.map(info => ( 
+        <Character info={info} key={info.id} openDetails={openDetails} />)
       )}
-
+      </MainStyle>
+      {/* {
+        setCurrentPersonId && <Details personId={currentPersonId} close={closeDetails} />
+      } */}
     </div>
   );
 }
