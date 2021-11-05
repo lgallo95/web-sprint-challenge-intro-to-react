@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import './App.css';
 import axios from 'axios';
-import Character from './components/Character'
-// import Details from './components/Details';
+import Characters from './components/Characters'
 import styled from "styled-components";
+import { BASE_URL } from './components/urls';
 
 
 const MainStyle = styled.div`
@@ -23,21 +23,10 @@ const App = () => {
   // sync up with, if any.
 
   const [person, setPerson] = useState([]);
-  const [currentPersonId, setCurrentPersonId] = useState(null);
 
-  const openDetails = id => {
-    setCurrentPersonId(id)
-  }
-
-  const closeDetails = () => {
-    setCurrentPersonId(null)
-  }
-
-  
   useEffect(() => {
-    axios.get('https://swapi.dev/api/people')
+    axios.get(`${BASE_URL}`)
       .then(res =>{
-        console.log(res.data)
         setPerson(res.data)
       })
       .catch(err => {
@@ -50,14 +39,9 @@ const App = () => {
   return (
     <div className="App">
       <h1 className="Header">Star Wars Characters</h1>
-      <MainStyle>
-      {person.map(info => ( 
-        <Character info={info} key={info.id} openDetails={openDetails} />)
-      )}
-      </MainStyle>
-      {/* {
-        setCurrentPersonId && <Details personId={currentPersonId} close={closeDetails} />
-      } */}
+      <MainStyle> 
+      <Characters person={person} />
+      </MainStyle> 
     </div>
   );
 }
