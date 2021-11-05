@@ -13,8 +13,8 @@ const Character = (props) => {
     const [open, setOpen] = useState(false);
 
     const toggleInfo = () => {
-        <ul> {props.person.gender} </ul>
-        setOpen(!open);
+        <p> {props.person.name} </p>
+        setOpen(open);
         
         };
     
